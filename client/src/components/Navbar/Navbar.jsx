@@ -26,7 +26,9 @@ const Navbar = ({ handleSlideIn }) => {
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
-        handleLogout();
+        dispatch({ type: "LOGOUT" });
+    navigate("/");
+    dispatch(setCurrentUser(null));
       }
     }
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
